@@ -1,0 +1,138 @@
+<body>
+  <div class="mybotton">
+    <br>
+    <button (click)="navegar()" class="bn632-hover bn26">Volver a Home</button>
+  </div>
+  <div class="row">
+
+    <div class="col-md-3">
+      <div class="card">
+        <div class="card-body p-4">
+          <form #encargadoForm="ngForm" (ngSubmit)="crearEncargado(encargadoForm)">
+
+        
+            <h1 class="titulo-bonito">Crear Encargado</h1>
+            <br>
+          
+            <div class="form-group">
+              <label for="nombre">Nombre:</label>
+              <input 
+                required 
+                type="text" 
+                id="nombre" 
+                name="nombre" 
+                [(ngModel)]="nuevoEncargado.nombre" 
+                placeholder="Ingrese su nombre" 
+                class="form-control"
+              >
+            </div>
+          
+            <div class="form-group">
+              <label for="apellido">Apellido:</label>
+              <input 
+                required 
+                type="text" 
+                id="apellido" 
+                name="apellido" 
+                [(ngModel)]="nuevoEncargado.apellido" 
+                placeholder="Ingrese su apellido" 
+                class="form-control"
+              >
+            </div>
+
+            <div class="form-group">
+              <label for="dni">Dni:</label>
+              <input 
+                required 
+                type="text" 
+                id="dni" 
+                name="dni" 
+                [(ngModel)]="nuevoEncargado.dni" 
+                placeholder="Ingrese su correo dni" 
+                class="form-control"
+              >
+            </div>
+          
+            <div class="form-group">
+              <label for="telefono">Teléfono:</label>
+              <input 
+                required 
+                type="text" 
+                id="telefono" 
+                name="telefono" 
+                [(ngModel)]="nuevoEncargado.telefono" 
+                placeholder="Ingrese su teléfono" 
+                class="form-control"
+              >
+            </div>
+          
+          
+          
+           
+          
+            <div class="form-group">
+              <label for="password">Contraseña:</label>
+              <input 
+                required 
+                type="password" 
+                id="password" 
+                name="password" 
+                [(ngModel)]="nuevoEncargado.password" 
+                placeholder="Ingrese su contraseña" 
+                class="form-control"
+              >
+            </div>
+          
+          
+          
+            <!-- Otros campos del formulario según tu estructura -->
+          
+            <button type="submit" class="bn6">Guardar</button>
+          </form>
+          
+        </div>
+      </div>
+    </div>
+    <div class="col-md-3">
+      <div class="card">
+        <div class="card-body p-4">
+          <h1 class="titulo-bonito">Buscar Encargado</h1>
+          <br>
+          <span class="p-input-icon-left">
+            <input required type="text" [(ngModel)]="telefonoFiltrado" placeholder="Ingrese Nro de Telefono" pInputText />
+            &nbsp;&nbsp;
+            <button type="button" class="btn btn-secondary"
+              (click)="buscarEncargadoPorTelefono(telefonoFiltrado)">Buscar</button>
+          </span>
+        </div>
+      </div>
+    </div>
+    <br>
+    <!-- TABLE -->
+    <table mat-table [dataSource]="encargados" class="tabla-estilo" matSort matPaginator #paginator>
+      <ng-container *ngFor="let columna of ['nombre', 'apellido', 'dni', 'telefono', 'pass']" [matColumnDef]="columna">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header>{{ columna | titlecase }}</th>
+        <td mat-cell *matCellDef="let encargado">{{ encargado[columna] }}</td>
+      </ng-container>
+      <ng-container matColumnDef="acciones">
+        <th mat-header-cell *matHeaderCellDef>Acciones</th>
+        <td mat-cell *matCellDef="let encargado">
+          <button (click)="eliminarEncargado(encargado.$$instanceId)" class="btn btn-danger btn-sm">
+            <i class="material-icons">delete</i>
+          </button>
+          
+          
+          
+          
+          <button type="button" class="btn btn-outline-info" (click)="openEditDialog(encargado)">Ver</button>
+        </td>
+      </ng-container>
+      <tr mat-header-row *matHeaderRowDef="['nombre', 'apellido', 'dni', 'telefono', 'pass', 'acciones']"></tr>
+      <tr mat-row *matRowDef="let row; columns: ['nombre', 'apellido', 'dni', 'telefono', 'pass', 'acciones']"></tr>
+    </table>
+    <!-- <div class="paginator-container">
+      <mat-paginator #paginator [pageSize]="10" [pageSizeOptions]="[5, 10, 25, 100]"></mat-paginator>
+    </div> -->
+
+  </div>
+</body>

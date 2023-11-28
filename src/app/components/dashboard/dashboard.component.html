@@ -1,0 +1,17 @@
+<div class="background-container">
+  <div class="centered-container">
+    <button (click)="cerrarSesion()" class="bn632-hover bn25">Cerrar Sesión</button>
+    <br>
+    <p-card class="scrollable-card clickable-card" header="Sacar un Turno" subheader="Recuerda ver antes la disponibilidad de canchas" (click)="abrirPopupDesdeDashboard()">
+      <ng-template pTemplate="header">
+        <img class="miImagen" alt="Card" src="../../../assets/images/imgCard.jpg" loading="lazy"/>
+      </ng-template>
+    </p-card>
+    <p-card class="scrollable-card clickable-card" header="Match Making" subheader="Toca para ver Encontrar un partido" (click)="irAMatch()">
+      <ng-template pTemplate="header">
+        <img class="miImagen" alt="Card" src="../../../assets/images/matchmaking img.avif" loading="lazy"/>
+      </ng-template>
+    </p-card>
+  </div>
+  
+</div>
